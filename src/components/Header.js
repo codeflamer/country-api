@@ -4,17 +4,11 @@ import Toggle from './Toggle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme , darkTheme} from '../theme';
 import GlobalStyles from '../globalStyles';
+import { useDarkMode } from '../useDarkMode';
 
 const Header = () => {
-    const [theme,setTheme] = useState('light');
-    const toggleBtn = ()=>{
-        if ((theme) === 'light'){
-            setTheme('dark');
-        }
-        else{
-            setTheme('light');
-        }
-    }
+    const [theme, toggleTheme] = useDarkMode();
+   
     return (
         <ThemeProvider theme={ theme==='light' ? lightTheme: darkTheme }>
             <GlobalStyles/>
@@ -24,7 +18,7 @@ const Header = () => {
                         Where in the World
                     </Content1>
                     <Content2>
-                        <Toggle toggleBtn={toggleBtn}/>
+                        <Toggle toggleBtn={toggleTheme}/>
                     </Content2>
                 </Container>
             </Nav>

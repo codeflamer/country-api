@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
-
+import { Link } from 'react-router-dom';
 const CountryDetail = () => {
     return (
         <Container>
             <Navigation>
                 <Cont>
-                    <Button>Back</Button>
+                    <Button><Link to='/'>Back</Link></Button>
                 </Cont>
             </Navigation>
             <Contents>
@@ -73,6 +72,10 @@ max-width:1400px;
     outline:none;
     border:none;
     border-radius:5px;
+    a{
+        color:var(--textColor);
+        text-decoration:none;
+    }
 `
 const Contents = styled.div`
 // border:1px solid red;
