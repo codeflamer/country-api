@@ -22,12 +22,12 @@ const Container = styled.section`
     margin-top:30px;
 `;
 const Content = styled.div`
-    max-width:1200px;
+    max-width:1400px;
     margin:0 auto;
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap:30px;
-    padding:17px 15px;
+    padding:17px 40px;
     @media(max-width:948px){
         grid-template-columns: repeat(3, 1fr);
     }

@@ -31,11 +31,11 @@ const Container = styled.section`
 `;
 const Contents = styled.section`
     // border:1px solid red;
-    max-width:1200px;
+    max-width:1400px;
     margin:0 auto;
     display:flex;
     justify-content:space-between;
-    padding:17px 15px;
+    padding:17px 40px;
     @media(max-width:768px){
         flex-direction:column;
     }

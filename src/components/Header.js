@@ -39,7 +39,7 @@ const Nav = styled.nav`
 `;
 const Container = styled.div`
     margin:0 auto;
-    max-width:1200px;
+    max-width:1400px;
     // border:1px solid blue;
     display:flex;
     justify-content:space-between;

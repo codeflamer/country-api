@@ -1,15 +1,26 @@
 import React from 'react'
-import Filtering from './components/Filtering'
 import Header from './components/Header';
-import Countries from './components/Countries';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <Header/>
-      <Filtering/>
-      <Countries/>
-    </div>
+        <Switch>
+          <Route path='/' exact>
+            <Home/>
+          </Route>
+          <Route path='/details'>
+            <Details/>
+          </Route>
+        </Switch> 
+    </Router>
   )
 }
 
