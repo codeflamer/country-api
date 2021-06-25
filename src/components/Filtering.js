@@ -13,6 +13,7 @@ const Filtering = () => {
                 <Content2>
                     <form>
                         <select id="cars" name="cars">
+                            <option>Filter By region</option>
                             <option value="africa">Africa</option>
                             <option value="america">America</option>
                             <option value="europe">Europe</option>

@@ -1,13 +1,33 @@
-import React,{useState} from 'react';
+import Reac,{useEffect} from 'react';
 import styled from 'styled-components';
 import Toggle from './Toggle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme , darkTheme} from '../theme';
 import GlobalStyles from '../globalStyles';
 import { useDarkMode } from '../useDarkMode';
+import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { updateCountries } from '../features/country/Country';
 
 const Header = () => {
     const [theme, toggleTheme] = useDarkMode();
+
+    const dispatch = useDispatch();
+
+    const getData = async()=>{
+        await axios.get('https://restcountries.eu/rest/v2/all')
+        .then((response)=>{
+            // console.log(response.data);
+            dispatch(updateCountries(response.data));
+        })
+        .catch((error)=>{
+            console.log('An Error has Occured, So no Data to Load');
+        })
+    }
+
+    useEffect(()=>{
+        getData();
+    },[])
    
     return (
         <ThemeProvider theme={ theme==='light' ? lightTheme: darkTheme }>

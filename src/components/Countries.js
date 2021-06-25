@@ -1,17 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { callCountries } from '../features/country/Country';
 import Country from './Country';
-
 const Countries = () => {
+
+    const countries = useSelector(callCountries);
+    // console.log(countries);
     return (
         <Container>
             <Content>
-                <Country/>
-                <Country/>
-                <Country/>
-                <Country/>
-                <Country/>
-                <Country/>
+                {countries && countries.map((country)=>{
+                   return  <Country key={country.name} {...country} />
+                })}
             </Content>
         </Container>
     )

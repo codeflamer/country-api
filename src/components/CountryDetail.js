@@ -1,9 +1,36 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { callCountry, getCountry } from '../features/country/Country';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 const CountryDetail = () => {
-    return (
-        <Container>
+
+    const dispatch = useDispatch();
+    let {id}  = useParams();
+    const cont =  useSelector(callCountry);
+    
+    const getData = async()=>{
+        await axios.get(`https://restcountries.eu/rest/v2/name/${id}`)
+        .then((response)=>{
+            dispatch(getCountry(response.data));
+        })
+        .catch((error)=>{
+            console.log('An Error has Occured, So no Data to Load');
+        })
+    }
+
+    useEffect(()=>{
+        getData();
+    },[])
+   
+    if (cont){
+        const {name,flag,nativeName,population,region,subregion,capital,topLevelDomain,currencies,languages,borders} = cont;
+        console.log(cont[0]);
+        return (
+            <Container>
             <Navigation>
                 <Cont>
                     <Button><Link to='/'>Back</Link></Button>
@@ -12,25 +39,33 @@ const CountryDetail = () => {
             <Contents>
                 <Content1>
                     <ImageContainer>
-                        <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAElBMVEUAAAD/zgDdAADnAADaAAD/2AAtsSEoAAAA+ElEQVR4nO3QMQGAMAAEsYeCf8tIuI0pkZANAAAAAAAAAAAAAAAAAAAAgB8dwm6CoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKewh7CbsIipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUofMGTNC8HkSxoAAAAASUVORK5CYII=' alt='country-big-flag'/>
+                        <img src={cont[0].flag} alt='country-big-flag'/>
                     </ImageContainer>
                 </Content1>
                 <Content2>
                     <CountryInfo>
                         <CountryName>
-                            <h3>Belgium</h3>
+                            <h3>{cont[0].name}</h3>
                             <CountryDiv>
                                 <FirstBatch>
-                                    <li><span>Native name</span>: Belgie</li>
-                                    <li><span>Population</span>: 11,315.511</li>
-                                    <li><span>Region</span>: Europe</li>
-                                    <li><span>Sub Region</span>: Western Europe</li>
-                                    <li><span>Capital</span>: Brussels</li>
+                                    <li><span>Native name</span>: {cont[0].nativeName}</li>
+                                    <li><span>Population</span>:{cont[0].population}</li>
+                                    <li><span>Region</span>: {cont[0].region}</li>
+                                    <li><span>Sub Region</span>: {cont[0].subregion}</li>
+                                    <li><span>Capital</span>: {cont[0].capital}</li>
                                 </FirstBatch>
                                 <SecondBatch>
-                                    <li><span>Top level Domain</span>: be</li>
-                                    <li><span>Currencies</span>: Euro</li>
-                                    <li><span>Languages</span>: Dutch,French,German</li>
+                                    <li><span>Top level Domain</span>: {cont[0].topLevelDomain}</li>
+                                    <li><span>Currencies</span>: 
+                                        {cont[0].currencies.map((currency)=>[
+                                            <li key={currency.name}>{currency.name}</li>
+                                        ])}  
+                                    </li>
+                                    <li><span>Languages</span>: 
+                                        {cont[0].languages.map((border)=>[
+                                            <li key={border.name}>{border.name}</li>
+                                        ])}
+                                    </li>
                                 </SecondBatch>
                             </CountryDiv>
                         </CountryName>
@@ -38,16 +73,21 @@ const CountryDetail = () => {
                         <Content3>
                             <h4>Border Countries:</h4> 
                             <CounterBorder>
-                                <li>France</li>
-                                <li>Germany</li>
-                                <li>Netherlands</li>
+                                {cont[0].borders.map((border)=>[
+                                    <li >{border}</li>
+                                ])}  
                             </CounterBorder>
                         </Content3>
                 </Content2>
               
             </Contents>
         </Container>
-    )
+        )
+    }
+    else{
+        return <h2>Loading...</h2>
+    }
+
 }
 
 const Container = styled.section`
@@ -142,6 +182,11 @@ const SecondBatch = styled.div`
         span{
             font-weight:bold;
         }
+       
+       li{
+        display:inline-block;
+        margin-right:10px;
+       }
     }
     @media(max-width:500px){
        margin-top:20px;
@@ -164,15 +209,24 @@ const CounterBorder = styled.ul`
     margin:0;
     display:flex;
     margin-left:20px;
+    // border:1px solid red;
     li{
         margin-right:10px;
         // border:1px solid red;
         padding:4px 15px;
         background:var(--elemBg);
+        @media(max-width:388px){
+            margin-top:10px;
+            width:80px;
+         }
     }
     @media(max-width:500px){
        margin:0;
     }
+    @media(max-width:388px){
+        display:block;
+     }
+    
 `;
 
 export default CountryDetail

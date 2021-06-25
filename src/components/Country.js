@@ -1,22 +1,25 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Country = () => {
+const Country = ({name,flag,population,region,capital}) => {
     return (
         <Container>
-            <Card>
-                <Cardheader><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAElBMVEUAAAD/zgDdAADnAADaAAD/2AAtsSEoAAAA+ElEQVR4nO3QMQGAMAAEsYeCf8tIuI0pkZANAAAAAAAAAAAAAAAAAAAAgB8dwm6CoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKewh7CbsIipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUofMGTNC8HkSxoAAAAASUVORK5CYII=' alt='flag'/></Cardheader>
-                <Cardbody>
-                    <CardBodyContainer>
-                        <h4>Germany</h4>
-                        <CardDetail>
-                            <li><span>Population</span>: 81,770.90</li>
-                            <li><span>Region</span>: Europe</li>
-                            <li><span>Capital</span>: Berlin</li>
-                        </CardDetail>
-                    </CardBodyContainer>
-                </Cardbody>
-            </Card>
+            <Link to={`details/${name}`}>
+                <Card>
+                    <Cardheader><img src={flag} alt='flag'/></Cardheader>
+                    <Cardbody>
+                        <CardBodyContainer>
+                            <h4>{name}</h4>
+                            <CardDetail>
+                                <li><span>Population</span>: {population}</li>
+                                <li><span>Region</span>: {region}</li>
+                                <li><span>Capital</span>: {capital}</li>
+                            </CardDetail>
+                        </CardBodyContainer>
+                    </Cardbody>
+                </Card>
+            </Link>
         </Container>
     )
 }
@@ -27,11 +30,18 @@ const Container = styled.div`
     padding:0;
     margin:0;
     border-radius:10px;
+    a{
+        text-decoration:none;
+        color:var(--inputColor);
+    }
 `
 const Card = styled.div``
 const Cardheader = styled.div`
+height:200px;
+width:100%;
   img{
       width:100%;
+      height:200px;
       border-top-right-radius:10px;
       border-top-left-radius:10px;
   }
@@ -41,6 +51,7 @@ const Cardbody = styled.div`
 `
 const CardBodyContainer = styled.div`
     margin-bottom:40px;
+    color:var(--inputColor);
     h4{
         padding:0;
         margin:0;
