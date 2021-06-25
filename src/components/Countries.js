@@ -1,12 +1,36 @@
-import React from 'react';
+import React,{useEffect}from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { callCountries } from '../features/country/Country';
+import { callCountries, getCountry } from '../features/country/Country';
 import Country from './Country';
+import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { updateCountries } from '../features/country/Country';
+
 const Countries = () => {
 
     const countries = useSelector(callCountries);
     // console.log(countries);
+    
+
+    const dispatch = useDispatch();
+
+    const getData = async()=>{
+        await axios.get('https://restcountries.eu/rest/v2/all')
+        .then((response)=>{
+            // console.log(response.data);
+            dispatch(updateCountries(response.data));
+            dispatch(getCountry(null));
+        })
+        .catch((error)=>{
+            console.log('An Error has Occured, So no Data to Load');
+        })
+    }
+
+    useEffect(()=>{
+        getData();
+    },[])
+
     return (
         <Container>
             <Content>
