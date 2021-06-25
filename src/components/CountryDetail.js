@@ -198,9 +198,10 @@ const Content3 = styled.div`
     h4{
         font-size:16px;
     }
-    @media(max-width:500px){
+    @media(max-width:1067px){
         flex-direction:column;
         display:block;
+        margin:0;
     }
 `;
 const CounterBorder = styled.ul`
@@ -215,15 +216,15 @@ const CounterBorder = styled.ul`
         // border:1px solid red;
         padding:4px 15px;
         background:var(--elemBg);
-        @media(max-width:388px){
+        @media(max-width:1067px){
             margin-top:10px;
             width:80px;
          }
     }
-    @media(max-width:500px){
+    @media(max-width:1067px){
        margin:0;
     }
-    @media(max-width:388px){
+    @media(max-width:1067px){
         display:block;
      }
     
