@@ -85,7 +85,13 @@ const CountryDetail = () => {
         )
     }
     else{
-        return <h2>Loading...</h2>
+        return (
+            <Container>
+                <ErrorContainer>
+                    Loading....
+                </ErrorContainer>
+            </Container>
+        )
     }
 
 }
@@ -93,6 +99,13 @@ const CountryDetail = () => {
 const Container = styled.section`
     margin-top:50px;
     // border:1px solid blue;
+`
+const ErrorContainer = styled.div`
+    max-width:1400px;
+    margin:0 auto;
+    font-size:25px;
+    font-weight:bold;
+    text-align:center;
 `
 const Navigation = styled.div`
     // padding:17px 40px;
