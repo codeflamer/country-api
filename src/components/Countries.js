@@ -32,7 +32,7 @@ const Countries = () => {
         return(
             <Container>
                 <ErrorContainer>
-                    Such countries/country don't exist.....
+                    Such countries/country/region doesn't exist.....
                 </ErrorContainer>
             </Container>
         )
