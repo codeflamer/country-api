@@ -1,11 +1,12 @@
 import React,{useEffect}from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { callCountriesQuery, callCountries, callQueryCondition, getCountry, setQueryCondition, callIsError } from '../features/country/Country';
+import { callCountriesQuery, callCountries, callQueryCondition, getCountry, callIsError } from '../features/country/Country';
 import Country from './Country';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { updateCountries } from '../features/country/Country';
+import { Slide } from "react-awesome-reveal";
 
 const Countries = () => {
     const error = useSelector(callIsError);
@@ -15,7 +16,6 @@ const Countries = () => {
     const getData = async()=>{
         await axios.get('https://restcountries.eu/rest/v2/all')
         .then((response)=>{
-            // console.log(response.data);
             dispatch(updateCountries(response.data));
             dispatch(getCountry(null));
         })
@@ -39,13 +39,15 @@ const Countries = () => {
     }
     else{
         return (
+            // <Slide>
             <Container>
                 <Content>
                     {countries && countries.map((country)=>{
-                       return  <Country key={country.name} {...country} />
+                    return  <Country key={country.name} {...country} />
                     })}
                 </Content>
             </Container>
+            // </Slide>
         )
     }
 }

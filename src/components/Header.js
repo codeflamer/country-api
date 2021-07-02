@@ -19,7 +19,7 @@ const Header = () => {
                         Where in the World
                     </Content1>
                     <Content2>
-                        <Toggle toggleBtn={toggleTheme}/>
+                        <Toggle toggleBtn={toggleTheme} text={ theme==='light' ? '<i class="fas fa-moon"></i> Dark Mode': '<i class="fas fa-sun"></i> Light Mode'}/>
                     </Content2>
                 </Container>
             </Nav>

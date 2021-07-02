@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Zoom } from "react-awesome-reveal";
 
 const Country = ({name,flag,population,region,capital}) => {
     return (
+        <Zoom>
         <Container>
             <Link to={`details/${name}`}>
                 <Card>
@@ -21,6 +23,7 @@ const Country = ({name,flag,population,region,capital}) => {
                 </Card>
             </Link>
         </Container>
+        </Zoom>
     )
 }
 

@@ -2,19 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Toggle = ({toggleBtn}) => {
+const Toggle = ({toggleBtn,text}) => {
+    console.log(typeof(text));
     return (
 
         <div>
             <Button onClick={toggleBtn}>
-                Click me to toggle
+                <div dangerouslySetInnerHTML={{__html: text}} />
             </Button>
         </div>
     )
 }
 
 const Button = styled.button`
-    cursor:pointer
+    cursor:pointer;
+    background:transparent;
+    border:none;
+    outline:none;
+    color: var(--textColor);
+    font-size:15px;
 `;
 
 export default Toggle;

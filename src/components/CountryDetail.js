@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { callCountry, getCountry } from '../features/country/Country';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { Slide } from "react-awesome-reveal";
 
 const CountryDetail = () => {
 
@@ -30,6 +30,7 @@ const CountryDetail = () => {
         const {name,flag,nativeName,population,region,subregion,capital,topLevelDomain,currencies,languages,borders} = cont;
         console.log(cont[0]);
         return (
+            <Slide>
             <Container>
             <Navigation>
                 <Cont>
@@ -82,6 +83,7 @@ const CountryDetail = () => {
               
             </Contents>
         </Container>
+        </Slide>
         )
     }
     else{
