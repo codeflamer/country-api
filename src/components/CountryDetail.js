@@ -224,10 +224,12 @@ const CounterBorder = styled.ul`
     padding:0;
     margin:0;
     display:flex;
+    flex-wrap:wrap;
     margin-left:20px;
     // border:1px solid red;
     li{
         margin-right:10px;
+        margin-top:7px;
         // border:1px solid red;
         padding:4px 15px;
         background:var(--elemBg);
